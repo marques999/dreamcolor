@@ -1,0 +1,11 @@
+{
+  "name": "dreamcolor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dreamcolor.js",
+  "author": "Diogo Marques",
+  "license": "ISC",
+  "dependencies": {
+    "noble": "^1.9.1"
+  }
+}
