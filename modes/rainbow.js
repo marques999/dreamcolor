@@ -22,8 +22,6 @@ function partition(segments) {
 	return Array.from({ length: segments + 1 }, (_, index) => index / segments);
 }
 
-function generateRainbow() {
-	return partition(360).map(hue => hsv2rgb(hue, 1.0, 255.0));
-}
-
-module.exports = { generateRainbow };
+module.exports = {
+    generateRainbow: () => partition(360).map(hue => hsv2rgb(hue, 1.0, 255.0))
+};

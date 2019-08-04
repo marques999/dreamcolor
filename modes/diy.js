@@ -1,25 +1,14 @@
-const MAXIMUM_LENGTH = 19;
-const PARAMETERS_LENGTH = 11;
-
-const hexify = (bytes) => bytes
-    .map(value => ("0" + (value & 0xFF).toString(16)).slice(-2))
-    .join(String());
-
-const calculateXor = (parameters) => parameters.reduce((i, j) => i ^ j, 0);
-const generateCommand = (parameters) => generateBaseCommand([0xA1, 0x02, ...parameters]);
-
-const generateBaseCommand = (parameters) => [
-    ...parameters,
-    ...new Array(MAXIMUM_LENGTH - parameters.length).fill(0),
-    calculateXor(parameters)
-];
+const { COMMAND_MODE, submodes } = require("./constants");
+const { buildWrite, buildWriteBuffered } = require("../shared/utils");
 
 function chunkify(collection, start, length) {    
     const end = start + Math.min(collection.length, length);
     return [collection.slice(start, end), collection.slice(end)];
 }
 
-function generatePreset(effect, zone, speed, colors) {
+const PARAMETERS_LENGTH = 11;
+
+function buildDiy(effect, zone, speed, colors) {
 
     const commands = [];
     const colorsBytes = colors.flat();
@@ -44,7 +33,11 @@ function generatePreset(effect, zone, speed, colors) {
 
     commands.push([0xFF]);
 
-    return commands.map(generateCommand).map(hexify);
+    return commands;
 }
 
-module.exports = { generatePreset };
+module.exports = { 
+    buildDiy,
+    setDiy: () => buildWrite([COMMAND_MODE, submodes.MODE_DIY]),
+    setDiyParameters: (parameters) => buildWriteBuffered([0x02, ...parameters])
+};
