@@ -1,4 +1,5 @@
-const { COMMAND_MODE, submodes } = require("./constants");
+const { submodes } = require("../modes/constants");
+const { COMMAND_MODE } = require("../commands/constants");
 const { buildWrite, buildWriteBuffered } = require("../shared/utils");
 
 function chunkify(collection, start, length) {    

@@ -1,12 +1,13 @@
+const { submodes } = require("../modes/constants");
+const { COMMAND_MODE } = require("../commands/constants");
 const { buildWrite, setRgb } = require("../shared/utils");
-const { commands, modes } = require("./constants");
 
 const setMusic = (parameters) => buildWrite([
-    commands.COMMAND_MODE, modes.MUSIC_IC, ...parameters
+    COMMAND_MODE, submodes.MODE_MUSIC_IC, ...parameters
 ]);
 
 const buildMusic = (submode, sensitivity = 0) => [
-    commands.COMMAND_MODE, modes.MUSIC_IC, submode, sensitivity & 0xFF
+    COMMAND_MODE, submodes.MODE_MUSIC_IC, submode, sensitivity & 0xFF
 ];
 
 const setScroll = (red, green, blue, sensitivity) => setMusic([

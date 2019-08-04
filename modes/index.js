@@ -1,4 +1,5 @@
-const { COMMAND_MODE, submodes } = require("./constants");
+const { submodes } = require("../modes/constants");
+const { COMMAND_MODE } = require("../commands/constants");
 const { buildRead, buildWrite, setRgb } = require("../shared/utils");
 
 const setColor = (redA, greenA, blueA, flag = false, redB = 0, greenB = 0, blueB = 0) => buildWrite([

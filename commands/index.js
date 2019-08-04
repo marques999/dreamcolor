@@ -1,13 +1,5 @@
+const constants = require("./constants");
 const { buildWrite } = require("../shared/utils");
-
-const constants = {
-    COMMAND_SWITCH: 0x01,
-    COMMAND_BRIGHTNESS: 0x04,
-    COMMAND_VERSION: 0x06,
-    COMMAND_INITIALIZE: 0x08,
-    COMMAND_REDBLUE: 0x0D,
-    COMMAND_CURRENT: 0x0E,
-};
 
 module.exports = {
     getEnabled: () => buildRead([constants.COMMAND_SWITCH]),
